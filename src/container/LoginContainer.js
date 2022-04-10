@@ -1,5 +1,4 @@
 import React,{useState} from "react";
-import LoginWithEmail from "../components/LoginWithEmail";
 import LoginWithOTP from "../components/LoginWithOTP";
 import labels from '../config/labels'
 import {Link} from 'react-router-dom'
@@ -9,7 +8,6 @@ import UseForm from '../components/UseForm'
  const Login=(props)=>{
     const{ handleChange,values,handleSubmit,errors}=UseForm(validate);
     const [loginWithOtp,setLoginWithOtp]=useState(false);
-    const [loginWithEmail,setLoginWithEmail]=useState(false);
 
     const loginWithOTP = () =>
     setLoginWithOtp( prevState =>!prevState)
@@ -17,11 +15,7 @@ import UseForm from '../components/UseForm'
         return <LoginWithOTP setLoginWithOtp={loginWithOTP}/>
     }
     
-    const loginWithEMAIL = () =>
-    setLoginWithEmail( prevState =>!prevState)
-        if(loginWithEmail){
-        return <LoginWithEmail setDontHavAcnt={loginWithEMAIL}/>
-    }    
+    
     return(
         <div className="container white">
             
@@ -36,7 +30,7 @@ import UseForm from '../components/UseForm'
                     <input 
                     type="password" name="password" placeholder="Password" id="password" value={values.password} onChange={handleChange} required/>
                     {errors.password && <p>{errors.password}</p>}
-                    <p className="message center">{labels.LOGINCONTAINER.DONT_HAVE_ACCNT}<button onClick={()=>setLoginWithEmail(loginWithEMAIL)} className="green right" >{labels.LOGINCONTAINER.CREATE_NEW_ACCOUNT}</button></p>
+                    <p className="message center">{labels.LOGINCONTAINER.DONT_HAVE_ACCNT}<button className="green right" >{labels.LOGINCONTAINER.CREATE_NEW_ACCOUNT}</button></p>
                     
                     <div>
                      <button  onClick={()=>setLoginWithOtp(loginWithOTP)}   className="blue darken-3">{labels.LOGINCONTAINER.LOGIN_THROUGH_OTP}</button>
